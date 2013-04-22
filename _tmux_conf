@@ -1,0 +1,55 @@
+# General configuration.
+# $ tmux show-options -g
+set -g base-index 1
+set -g display-time 5000
+set -g repeat-time 1000
+set -g status-keys vi
+set -g status-utf8 on
+set -g status-bg black
+set -g status-fg white
+set -g status-justify left
+set -g status-interval 1
+set -g status-left-length 15
+set -g status-right-length 55
+set -g visual-activity off
+set -g status-left '#[fg=red]#H#[fg=green]:#[fg=white]#S #[fg=green]][#[default]|#[session-name]'
+#set -g status-left "#[fg=white,bright,bg=blue] Session #[fg=yellow,bright,bg=blue]#S #[default] |" # session-name
+set -g status-right '#[fg=green]][ #[fg=blue]%Y-%m-%d #[fg=white]%H:%M#[default]'
+#set -g status-right "#[fg=red,bright][ #[fg=cyan]#(cd ~/miiicasa;git branch --no-color | sed -e '/^[^*]/d' -e 's/* //') #[fg=red]]#[default] #[fg=yellow,bright] %Y-%m-%d #[fg=green]%H:%M:%S #[default]#[fg=magenta,bright]#[default]"
+
+# Configuration for each window.
+# $ tmux show-window-options -g
+setw -g automatic-rename
+setw -g monitor-activity on
+setw -g utf8 on
+setw -g window-status-format " #I$ #W "
+setw -g window-status-current-format " #I$ #W "
+setw -g window-status-current-bg blue
+setw -g window-status-current-fg yellow
+setw -g window-status-current-attr default
+
+set-option -g visual-bell off
+set-option -g bell-on-alert on
+ 
+# Customization for key bindings.
+# Check it using "C-a + ?".
+## Make tmux like screen, using Ctrl+A
+unbind C-b
+set -g prefix M-b
+#bind ` send-prefix
+
+## Make tmux change to last window by C-b twice
+unbind l
+bind-key M-b last-window
+bind-key l last-window
+ 
+## Use h and v for splitting.
+unbind %
+unbind '"'
+bind | split-window -h
+bind - split-window -v
+
+ 
+## Use a for renaming the window prompt.
+#unbind ','
+#bind ` command-prompt -I '#W' "rename-window '%%'"
