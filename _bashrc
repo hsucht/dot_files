@@ -48,6 +48,7 @@ export PROMPT_COMMAND="find_git_branch;"
 export PS1="\\u@\\h [\\w]\${git_branch}\\$ "
 export VISUAL=vim
 export PAGER="less"
+export LESS="-mrSwX"
 export LANG="en_US.UTF-8"
 
 #alias
