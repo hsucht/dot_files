@@ -1,6 +1,6 @@
 "vim base setting
 set t_Co=256
-"colorscheme molokai
+
 filetype plugin indent on
 set noswf               "don't use swap file all in memory
 set nocompatible        "vi and vim is not comaptible
@@ -21,17 +21,20 @@ set ignorecase          "ignore charector case
 
 "programming setting
 syntax on
-set foldmethod=syntax   "fold by syntax 
+set foldmethod=syntax   "fold by syntax
 set autoindent          "auto indent
 set cindent             "c indent
 set number              "show line number
 set nowrap              "no break line
+set nopaste
 
 "show setting
 set showmatch           "brackets matching
 set showcmd             "show command
 set showmode            "show mode
 set ruler               "line status
+set cursorline          "cursor line
+
 
 "tab setting
 set shiftwidth=4        "shift tab 4 space
@@ -56,10 +59,25 @@ highlight User6 ctermfg=215
 "functional mapping
 nmap <F5> :e!<CR>
 nmap <F6> :set nu!<BAR>set nu?<CR>
-nmap <F7> :if exists("syntax_on")<BAR>
-    \ syntax off <BAR><CR>
-    \ else <BAR>
-    \ syntax on <BAR>
-    \ endif <CR>
+"nmap <F7> :if exists("syntax_on")<BAR>
+"    \ syntax off <BAR><CR>
+"    \ else <BAR>
+"    \ syntax on <BAR>
+"    \ endif <CR>
+nmap <F7> :%s/\s\+$//<CR>
 nmap <F8> :set hls!<BAR>set hls?<CR>
 nmap <F9> :set paste!<BAR>set paste?<CR>
+
+"colorscheme
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+"colorscheme ron
+"
+"highlight whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+"autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+"autocmd InsertEnter * match ExtraWhitespace /\\+\%#\@<!$/
+"autocmd InsertLeave * match ExtraWhitespace /\\+$/
+"autocmd BufWinLeave * call clearmatches()
