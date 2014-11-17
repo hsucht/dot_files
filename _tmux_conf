@@ -9,7 +9,7 @@ set -g status-bg black
 set -g status-fg white
 set -g status-justify left
 set -g status-interval 1
-set -g status-left-length 15
+set -g status-left-length 17
 set -g status-right-length 55
 set -g visual-activity off
 set -g status-left '#[fg=red]#H#[fg=green]:#[fg=white]#S #[fg=green]][#[default]|#[session-name]'
@@ -30,26 +30,35 @@ setw -g window-status-current-attr default
 
 set-option -g visual-bell off
 set-option -g bell-on-alert on
- 
+
 # Customization for key bindings.
 # Check it using "C-a + ?".
 ## Make tmux like screen, using Ctrl+A
 unbind C-b
-set -g prefix M-b
-#bind ` send-prefix
+set -g prefix C-a
+bind C-a send-prefix
 
 ## Make tmux change to last window by C-b twice
-unbind l
-bind-key M-b last-window
-bind-key l last-window
- 
+#unbind l
+#bind-key M-b last-window
+#bind-key l last-window
+bind-key -n F10 last-window
+bind-key -n F11 previous-window
+bind-key -n F12 next-window
+bind-key -n M-c new-window
+
+## pane browsing
+unbind-key C-up
+unbind-key C-down
+unbind-key C-left
+unbind-key C-right
+
 ## Use h and v for splitting.
 unbind %
 unbind '"'
 bind | split-window -h
 bind - split-window -v
 
- 
 ## Use a for renaming the window prompt.
 #unbind ','
 #bind ` command-prompt -I '#W' "rename-window '%%'"
