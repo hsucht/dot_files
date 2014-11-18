@@ -1,3 +1,32 @@
+" Vundle
+set nocompatible             " not compatible with the old-fashion vi mode
+filetype off                 " required!
+
+" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
+" Setting up Vundle - the vim plugin bundler
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+  echo "Installing Vundle.."
+  echo ""
+  silent !mkdir -p ~/.vim/bundle
+  silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+  let iCanHazVundle=0
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+"Bundle
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/nerdtree'
+Bundle 'wincent/command-t'
+
+
 "vim base setting
 set t_Co=256
 
@@ -68,12 +97,15 @@ nmap <F7> :%s/\s\+$//<CR>
 nmap <F8> :set hls!<BAR>set hls?<CR>
 nmap <F9> :set paste!<BAR>set paste?<CR>
 
-"colorscheme
+"solarized theme
 let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
-"colorscheme ron
-"
+
+"nerdtree
+nmap <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 "highlight whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
