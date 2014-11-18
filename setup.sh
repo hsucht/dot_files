@@ -1,7 +1,7 @@
 # check environment
 for c in vim ruby make
 do
-    if [ "`which $c`" == '' ]; then
+    if [ "$(which $c)" = '' ]; then
         echo need to install $c first
         exit
     fi
