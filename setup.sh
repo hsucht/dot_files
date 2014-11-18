@@ -1,3 +1,12 @@
+# check environment
+for c in vim ruby make
+do
+    if [ "`which $c`" == '' ]; then
+        echo need to install $c first
+        exit
+    fi
+done
+
 # copy dot files
 cp _bashrc ~/.bash_profile
 cp _tmux_conf ~/.tmux.conf
