@@ -19,7 +19,7 @@ set -g status-right '#[fg=green]][ #[fg=blue]%Y-%m-%d #[fg=white]%H:%M#[default]
 
 # Configuration for each window.
 # $ tmux show-window-options -g
-setw -g automatic-rename
+setw -g automatic-rename on
 setw -g monitor-activity on
 setw -g utf8 on
 setw -g window-status-format " #I$ #W "

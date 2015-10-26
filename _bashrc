@@ -8,19 +8,24 @@ fi
 find_git_branch () {
     git_branch=`git branch --no-color 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/:(\1)/"`
 }
+find_git_repos () {
+    git rev-parse --show-toplevel 2>/dev/null  1>/dev/null && basename `git rev-parse --show-toplevel`;
+}
 
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 # export
 export CLICOLOR="1"
 export LSCOLORS="gxfxcxdxbxegedabagacad"
-export PROMPT_COMMAND="find_git_branch;"
 export PS1="[\[\033[1;32m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;36m\]\${git_branch}\[\033[0;33m\]\[\033[0m\]
 \[\033[1;31m\]\h\[\033[0m\] \$ "
 export VISUAL=vim
 export PAGER="less"
+export PROMPT_COMMAND="find_git_branch;"
 export LESS="-mrSwX"
 export LANG="en_US.UTF-8"
 export PATH="$HOME/bin:$PATH"
+export JAVA_HOME=`/usr/libexec/java_home`
 
 if [ -n "$PATH" ]; then
   old_PATH=$PATH:; PATH=
@@ -44,3 +49,5 @@ alias today="date +%Y%m%d"
 alias grep="grep --color"
 alias json_bl="php ~/util/jsonByLine.php"
 alias composer="php ~/bin/composer"
+alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+
