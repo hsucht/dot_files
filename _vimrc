@@ -25,6 +25,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'wincent/command-t'
+Plugin 'docker/docker' , {'rtp': 'contrib/syntax/vim/'}
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
